@@ -1,0 +1,806 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+/* ===============================
+GLOBAL COLOR SYSTEM
+=============================== */
+
+:root {
+
+--primary: #0d6efd;
+--accent: #6610f2;
+
+--soft-bg: #eef4ff;
+--page-bg: #f7f9fc;
+
+--text-dark: #222;
+--text-muted: #666;
+
+}
+
+
+/* ===============================
+GLOBAL BASE STYLES
+=============================== */
+
+body {
+
+background: var(--page-bg);
+
+font-family: "Segoe UI", sans-serif;
+
+}
+
+
+section {
+
+margin-bottom: 60px;
+
+}
+
+
+section h2 {
+
+font-size: 2.2rem;
+
+font-weight: 700;
+
+color: var(--text-dark);
+
+}
+
+
+/* BUTTON IMPROVEMENTS */
+
+.btn {
+
+border-radius: 40px;
+
+font-weight: 600;
+
+transition: .25s ease;
+
+}
+
+
+.btn:hover {
+
+transform: translateY(-2px);
+
+}
+
+
+/* ===============================
+HERO SECTION (PREMIUM VERSION)
+=============================== */
+
+.hero-badge {
+
+display: inline-flex;
+
+align-items: center;
+
+padding: 6px 18px;
+
+font-size: 14px;
+
+font-weight: 600;
+
+letter-spacing: .4px;
+
+color: white;
+
+border-radius: 50px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(13,110,253,.22),
+rgba(102,16,242,.22)
+);
+
+backdrop-filter: blur(6px);
+
+border: 1px solid rgba(255,255,255,.18);
+
+box-shadow:
+
+0 0 10px rgba(13,110,253,.18);
+
+margin-bottom: 20px;
+
+transition: .35s ease;
+
+position: relative;
+
+overflow: hidden;
+
+}
+.hero-badge::after {
+
+content: "";
+
+position: absolute;
+
+top: 0;
+
+left: -100%;
+
+width: 100%;
+
+height: 100%;
+
+background:
+
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.5),
+transparent
+);
+
+transition: .6s ease;
+
+}
+
+.hero-badge:hover::after {
+
+left: 100%;
+
+}
+
+
+.hero-section {
+
+position: relative;
+
+height: 62vh;
+
+background:
+url("{% static 'images/hero2.png' %}")
+right center / cover no-repeat;
+
+display: flex;
+
+align-items: center;
+
+padding-left: 80px;
+
+overflow: hidden;
+
+}
+
+
+/* LEFT DARK + BRAND GRADIENT OVERLAY */
+
+.hero-section::before {
+
+content: "";
+
+position: absolute;
+
+inset: 0;
+
+background:
+
+linear-gradient(
+90deg,
+rgba(0,0,0,.88) 0%,
+rgba(0,0,0,.65) 40%,
+rgba(13,110,253,.15) 70%,
+rgba(102,16,242,.08) 100%
+);
+
+z-index: 1;
+
+}
+
+
+/* BRAND COLOR GLOW LAYER */
+
+.hero-section::after {
+
+content: "";
+
+position: absolute;
+
+top: 0;
+left: 0;
+
+width: 100%;
+height: 100%;
+
+background:
+
+radial-gradient(
+circle at left,
+rgba(13,110,253,.25),
+transparent 60%
+);
+
+z-index: 1;
+
+}
+
+
+/* HERO TEXT CONTAINER */
+
+.hero-section .container {
+
+position: relative;
+
+z-index: 2;
+
+color: white;
+
+max-width: 600px;
+
+}
+
+
+/* HEADLINE */
+
+.hero-section h1 {
+
+font-size: 3.2rem;
+
+font-weight: 700;
+
+line-height: 1.2;
+
+animation: heroFade 1s ease forwards;
+
+}
+
+
+/* SUBTEXT */
+
+.hero-section p {
+
+font-size: 1.25rem;
+
+margin-top: 15px;
+
+opacity: .95;
+
+animation: heroFade 1.4s ease forwards;
+
+}
+
+
+/* BUTTON */
+
+.hero-section .btn-warning {
+
+background: linear-gradient(
+135deg,
+#0d6efd,
+#6610f2
+);
+
+border: none;
+
+color: white;
+
+border-radius: 50px;
+
+padding: 12px 32px;
+
+font-weight: 600;
+
+transition: .3s ease;
+
+animation: heroFade 1.8s ease forwards;
+
+}
+
+
+/* BUTTON HOVER */
+
+.hero-section .btn-warning:hover {
+
+transform: translateY(-3px);
+
+box-shadow:
+
+0 10px 25px rgba(13,110,253,.4);
+
+}
+
+
+/* TEXT FADE ANIMATION */
+
+@keyframes heroFade {
+
+from {
+
+opacity: 0;
+
+transform: translateY(20px);
+
+}
+
+to {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+}
+
+/* ===============================
+FEATURES SECTION
+=============================== */
+
+.features-section {
+
+background: var(--soft-bg);
+
+padding: 70px 0;
+
+border-radius: 20px;
+
+}
+
+
+/* TITLE UNDERLINE EFFECT */
+
+.features-title {
+
+position: relative;
+
+display: inline-block;
+
+animation: fadeSlide 1s ease;
+
+}
+
+
+.features-title::after {
+
+content: "";
+
+position: absolute;
+
+left: 50%;
+
+bottom: -10px;
+
+width: 0;
+
+height: 4px;
+
+background:
+
+linear-gradient(
+90deg,
+var(--primary),
+var(--accent)
+);
+
+transform: translateX(-50%);
+
+transition: .4s ease;
+
+border-radius: 10px;
+
+}
+
+
+.features-title:hover::after {
+
+width: 80px;
+
+}
+
+
+/* CARD STYLE */
+
+.features-card {
+
+position: relative;
+
+background: white;
+
+border-radius: 15px;
+
+padding: 25px;
+
+transition: .35s ease;
+
+border: 1px solid #eee;
+
+}
+
+
+/* LEFT ACCENT BAR */
+
+.features-card::before {
+
+content: "";
+
+position: absolute;
+
+left: 0;
+
+top: 0;
+
+height: 0%;
+
+width: 4px;
+
+background:
+
+linear-gradient(
+var(--primary),
+var(--accent)
+);
+
+transition: .4s ease;
+
+border-radius: 15px 0 0 15px;
+
+}
+
+
+/* CARD HOVER */
+
+.features-card:hover {
+
+transform: translateY(-8px);
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.08),
+
+0 0 10px rgba(13,110,253,.15);
+
+}
+
+
+.features-card:hover::before {
+
+height: 100%;
+
+}
+
+
+/* ICON EFFECT */
+
+.features-card i {
+
+transition: .35s ease;
+
+}
+
+
+.features-card:hover i {
+
+transform: scale(1.15);
+
+color: var(--accent);
+
+}
+
+
+/* TEXT POLISH */
+
+.features-card p {
+
+color: var(--text-muted);
+
+}
+
+
+.features-card:hover h4 {
+
+color: var(--primary);
+
+}
+
+
+/* ===============================
+COURSES SECTION
+=============================== */
+
+#courses {
+
+background: white;
+
+border-radius: 20px;
+
+padding: 60px 0;
+
+margin: 40px auto;
+
+box-shadow:
+
+0 6px 18px rgba(0,0,0,.04);
+
+}
+
+
+/* COURSE CARDS */
+
+#courses .card {
+
+border-radius: 14px;
+
+transition: .35s ease;
+
+}
+
+
+#courses .card:hover {
+
+transform: translateY(-6px);
+
+box-shadow:
+
+0 12px 30px rgba(0,0,0,.12);
+
+}
+
+
+/* CARD TEXT */
+
+.card-body h5 {
+
+font-weight: 600;
+
+}
+
+
+.card-body p {
+
+font-size: .95rem;
+
+color: #555;
+
+}
+
+
+/* ===============================
+CTA SECTION
+=============================== */
+
+.cta-section {
+
+background:
+
+linear-gradient(
+135deg,
+#eef4ff,
+#f5f1ff
+);
+
+padding: 80px 0;
+
+border-radius: 20px;
+
+max-width: 1100px;
+
+margin: auto;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.cta-section h2 {
+
+font-size: 2.4rem;
+
+font-weight: 700;
+
+color: var(--primary);
+
+}
+
+
+.cta-section p {
+
+font-size: 1.2rem;
+
+color: #555;
+
+}
+
+
+.cta-section .btn-light {
+
+background:
+
+linear-gradient(
+135deg,
+var(--primary),
+var(--accent)
+);
+
+color: white;
+
+border: none;
+
+padding: 12px 32px;
+
+}
+
+
+.cta-section .btn-light:hover {
+
+transform: translateY(-3px);
+
+box-shadow:
+
+0 10px 25px rgba(13,110,253,.3);
+
+}
+
+
+/* ===============================
+ANIMATION UTILITIES
+=============================== */
+
+@keyframes fadeSlide {
+
+from {
+
+opacity: 0;
+
+transform: translateY(20px);
+
+}
+
+to {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+}
+
+
+/* ===============================
+ALERT MESSAGES
+=============================== */
+
+.alert {
+
+border-radius: 10px;
+
+}
+{% endblock style %}
+
+{% block content %}
+
+<!-- MESSAGES -->
+{% if messages %}
+  <div class="container mt-4">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <span class="hero-badge">
+             <i class="bi bi-lightning-charge-fill me-2"></i>
+            Learn from Industry Experts
+        </span>
+        <h1 class="display-4 fw-bold">Upgrade Your IT Skills with LearnHub</h1>
+        <p class="lead mt-3">Master Programming, Web Development, Data Science & More</p>
+        <a href="#courses" class="btn btn-warning btn-lg mt-4 px-4">Explore Courses</a>
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features-section">
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-5 features-title">Why Choose LearnHub?</h2>
+
+        <div class="row g-4">
+
+            <!-- CARD 1 -->
+            <div class="col-md-4">
+                <div class="features-card shadow-sm p-4">
+
+                    <i class="bi bi-person-workspace fs-1 mb-3 text-primary"></i>
+
+                    <h4>Expert Mentors</h4>
+                    <p>Learn from industry professionals with real-world experience.</p>
+
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-md-4">
+                <div class="features-card shadow-sm p-4">
+
+                    <i class="bi bi-laptop fs-1 mb-3 text-primary"></i>
+
+                    <h4>Hands-on Projects</h4>
+                    <p>Build real projects to strengthen your portfolio.</p>
+
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-md-4">
+                <div class="features-card shadow-sm p-4">
+
+                    <i class="bi bi-graph-up-arrow fs-1 mb-3 text-primary"></i>
+
+                    <h4>Job Assistance</h4>
+                    <p>Get career guidance and placement support to land your dream job.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- COURSES SECTION -->
+<section id="courses" class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5">Popular IT Courses</h2>
+        <div class="row g-4">
+            {% for course in courses %}
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100">
+                    {% if course.image %}
+                    <a href="/detail/{{ course.id }}">
+                        <div style="height:180px; background:#f1f4ff; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                            <img src="{{ course.image.url }}"
+                                style="max-height:180px; max-width:100%; object-fit:contain;"
+                                alt="{{ course.name }}">
+                        </div>
+                    </a>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ course.name }}</h5>
+                        <p class="card-text">{{ course.description|truncatewords:12 }}</p>
+                        <p class="mb-1"><strong>Rating:</strong> {{ course.rating }} ⭐</p>
+                        <p class="mb-2"><strong>Price:</strong> ₹{{ course.price }}</p>
+                        <div class="mt-auto d-flex gap-2 justify-content-center">
+                            {% if course.id in enrolled_ids %}
+                                <a href="/mycourses/" class="btn btn-success flex-fill">✅ Already Enrolled</a>
+                            {% else %}
+                                <a href="/enroll/{{ course.id }}/" class="btn btn-primary flex-fill">Enroll Now</a>
+                                <a href="/cart/add/{{ course.id }}/" class="btn btn-outline-success flex-fill">Add to Cart</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/course" class="btn btn-warning btn-lg mt-5 px-5">View All Courses</a>
+    </div>
+</section>
+<!-- CTA SECTION -->
+<section class="container">
+    <div class="cta-section text-center">
+    <h2>
+        <i class="bi bi-rocket-takeoff me-2"></i>
+            Start Your Learning Journey Today
+    </h2>        
+    <p>Join thousands of students building successful IT careers.</p>
+    <a href="#courses" class="btn btn-light btn-lg mt-3 px-4">Get Started</a>
+    </div>
+</section>
+
+{% endblock content %}

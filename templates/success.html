@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-5 text-center">
+
+    <div class="card shadow-sm p-5 mx-auto" style="max-width:500px;">
+
+        <!-- Success Icon -->
+        <div class="mb-4">
+            <span style="font-size: 4rem;">🎉</span>
+        </div>
+
+        <!-- Success Message -->
+        <h2 class="text-success mb-3">Payment Successful!</h2>
+        <p class="mb-3">
+            You are now enrolled in your courses. Start learning right away!
+        </p>
+
+        <!-- Benefits -->
+        <div class="alert alert-info">
+            📚 Lifetime access to your courses <br>
+            🎓 Certificate available upon completion <br>
+            📱 Learn on mobile and desktop
+        </div>
+
+        <!-- Buttons -->
+        <a href="/mycourses" class="btn btn-primary mt-3">
+            Go to My Courses
+        </a>
+        <a href="/course" class="btn btn-outline-secondary mt-3 ms-2">
+            Browse More Courses
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Your Learning Cart 🎓</h1>
+
+    {% if items %}
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle shadow-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>Course</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <!-- Course Info -->
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="{{ item.course.image.url }}" 
+                                 alt="{{ item.course.name }}" 
+                                 width="70" class="rounded me-3">
+                            <div>
+                                <strong>{{ item.course.name }}</strong><br>
+                                <small class="text-muted">
+                                    {{ item.course.duration }} • Lifetime Access
+                                </small>
+                            </div>
+                        </div>
+                    </td>
+
+                    
+
+                    <!-- Price -->
+                    <td>
+                        {% if item.course.original_price %}
+                            <del class="text-muted"><i class="fa-solid fa-indian-rupee-sign"></i>{{ item.course.original_price }}</del><br>
+                        {% endif %}
+                        <strong class="text-success"><i class="fa-solid fa-indian-rupee-sign"></i>{{ item.course.price }}</strong>
+                    </td>
+
+                    <!-- Actions -->
+                    <td>
+                        <a href="/cart/remove/{{ item.course.id }}" 
+                           class="btn btn-sm btn-danger mb-1">
+                           Remove
+                        </a><br>
+
+                    
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total Section -->
+    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+        <a href="/course" class="btn btn-outline-primary">
+            ← Explore More Courses
+        </a>
+
+        <div class="text-end">
+            <h4>Total: <span class="text-success"><i class="fa-solid fa-indian-rupee-sign"></i>{{ grand_total }}</span></h4>
+
+            <a href="/checkout" class="btn btn-success btn-lg mt-2">
+                Enroll Now 🚀
+            </a>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="alert alert-info mt-5 shadow-sm">
+        <h5 class="mb-2">What you’ll get after enrolling:</h5>
+        <ul class="mb-0">
+            <li>📚 Full lifetime access to courses</li>
+            <li>📄 Certificate of completion</li>
+            <li>📥 Downloadable resources</li>
+            <li>📱 Access on mobile & desktop</li>
+        </ul>
+    </div>
+
+    {% else %}
+    <!-- Empty Cart -->
+    <div class="alert alert-info text-center shadow-sm">
+        <h4>Your cart is empty 😕</h4>
+        <p>Start learning something new today!</p>
+        <a href="/course" class="btn btn-primary mt-2">
+            Browse Courses
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

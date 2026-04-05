@@ -1,0 +1,186 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-4 py-lg-5">
+
+
+<!-- Checkout Progress Bar -->
+<div class="mb-4">
+
+<div class="progress" style="height:6px;">
+<div class="progress-bar bg-success" style="width:66%"></div>
+</div>
+
+<div class="d-flex justify-content-between small mt-2 text-muted">
+<span>Cart</span>
+<span class="fw-bold text-success">Checkout</span>
+<span>Payment</span>
+</div>
+
+</div>
+
+
+<div class="row g-4">
+
+
+<!-- LEFT SECTION -->
+<div class="col-lg-8">
+
+
+<!-- Course List Card -->
+<div class="card shadow-sm border-0">
+
+<div class="card-header bg-white border-bottom">
+<h5 class="mb-0">Your Courses</h5>
+</div>
+
+<div class="card-body p-0">
+
+<div class="table-responsive">
+
+<table class="table align-middle mb-0">
+
+<tbody>
+
+{% for item in items %}
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center">
+
+<img src="{{ item.course.image.url }}"
+class="rounded me-3"
+style="width:80px;">
+
+<div>
+
+<div class="fw-semibold">
+{{ item.course.name }}
+</div>
+
+<div class="small text-muted">
+{{ item.course.duration }} • Lifetime Access
+</div>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td class="text-end">
+
+{% if item.course.original_price %}
+
+<div class="small text-muted">
+<del>₹{{ item.course.original_price }}</del>
+</div>
+
+{% endif %}
+
+<div class="fw-bold text-success">
+₹{{ item.course.price }}
+</div>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- RIGHT SECTION -->
+<div class="col-lg-4">
+
+<div class="card shadow-lg border-0 sticky-lg-top"
+style="top:120px">
+
+
+<div class="card-body">
+
+
+<h5 class="mb-4">Order Summary</h5>
+
+
+<div class="d-flex justify-content-between mb-2">
+<span class="text-muted">Subtotal</span>
+<span>₹{{ grand_total }}</span>
+</div>
+
+
+<div class="d-flex justify-content-between mb-2">
+<span class="text-muted">Discount</span>
+<span class="text-success">-20%</span>
+</div>
+
+
+<hr>
+
+
+<div class="d-flex justify-content-between fw-bold fs-5">
+<span>Total</span>
+<span class="text-success">
+₹{{ grand_total_discount|floatformat:"2.2f" }}
+</span>
+</div>
+
+
+<a href="/payment"
+class="btn btn-success w-100 mt-4 py-3 fw-semibold">
+Proceed to Secure Payment 🔒
+</a>
+
+
+<div class="text-center small text-muted mt-3">
+
+✔ Instant course access
+<br>
+✔ 7‑day refund guarantee
+<br>
+✔ Secure SSL checkout
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Payment Trust Logos -->
+<div class="text-center mt-3">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+{% endblock content %}
+```

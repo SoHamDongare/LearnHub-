@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .profile-card {
+        position: relative;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        background: #fefefe;
+    }
+
+    .profile-edit-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        background: #ff9800;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .profile-edit-btn:hover {
+        background: #e68900;
+    }
+</style>
+
+<div style="max-width:700px;margin:40px auto;font-family:sans-serif;">
+
+    {% if profile %}
+
+        <div class="profile-card">
+
+            <a href="{% url 'profile_edit' %}" class="profile-edit-btn">
+                Edit Profile
+            </a>
+
+            <h2 style="margin-bottom:10px;">{{ profile.fullname }}</h2>
+
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Contact:</strong> {{ profile.contact }}</p>
+            <p><strong>Gender:</strong> {{ profile.gender }}</p>
+
+            {% if profile.image %}
+                <img src="{{ profile.image.url }}" width="150"
+                style="border-radius:50%;margin-top:15px;">
+            {% endif %}
+
+        </div>
+
+    {% else %}
+
+        <div style="text-align:center;">
+            <h2>No Profile Found</h2>
+
+            <a href="{% url 'profile_edit' %}"
+            style="padding:12px 25px;background:#4CAF50;color:white;border-radius:6px;text-decoration:none;">
+                Create Profile
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock content %}

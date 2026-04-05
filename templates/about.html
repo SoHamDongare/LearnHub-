@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+
+/* HERO */
+
+.about-hero {
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color: white;
+    text-align: center;
+    padding: clamp(60px,10vw,120px) 20px;
+}
+
+.about-hero h1 {
+    font-size: clamp(2rem,5vw,3rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    opacity: .9;
+    max-width: 600px;
+    margin: auto;
+}
+
+
+/* SECTION UTILITIES */
+
+.section-spacing {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: #888;
+    margin-bottom: 40px;
+}
+
+
+/* STATS */
+
+.stat-box {
+    text-align: center;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    transition: all .3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(30,60,114,.15);
+}
+
+.stat-box h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e3c72;
+}
+
+
+/* TEAM */
+
+.team-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    text-align: center;
+    padding: 30px 20px;
+    transition: all .3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+    margin: auto;
+    margin-bottom: 15px;
+    transition: .3s;
+}
+
+.team-card:hover .team-avatar {
+    transform: scale(1.1);
+}
+
+
+/* VALUES */
+
+.value-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    border-left: 4px solid #2a5298;
+    transition: all .3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+    border-left: 4px solid #1e3c72;
+}
+
+.value-card .icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+
+/* MISSION CARD */
+
+.mission-highlight {
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
+
+/* SCROLL ANIMATION */
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .6s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+{% endblock extra_css %}
+
+
+{% block content %}
+
+
+<!-- HERO -->
+
+<section class="about-hero">
+
+<h1>About LearnHub 🎓</h1>
+
+<p>
+Empowering students with industry-ready IT skills through expert-led training and real-world projects.
+</p>
+
+</section>
+
+
+
+<!-- MISSION -->
+
+<section class="section-spacing bg-light">
+
+<div class="container">
+
+<div class="row align-items-center g-5">
+
+<div class="col-md-6">
+
+<h2 class="section-title">Our Mission</h2>
+
+<p class="text-muted" style="line-height:1.9;">
+LearnHub bridges the gap between education and industry by delivering practical,
+career-focused IT training designed by professionals.
+</p>
+
+<p class="text-muted" style="line-height:1.9;">
+From beginner-friendly programs to advanced specializations, we prepare students
+for real-world success.
+</p>
+
+<a href="/course" class="btn btn-primary px-4 py-2 mt-2 rounded-pill">
+
+Explore Courses →
+
+</a>
+
+</div>
+
+
+<div class="col-md-6">
+
+<div class="mission-highlight">
+
+<div style="font-size:80px;">🎯</div>
+
+<h4 class="mt-3 fw-bold">
+
+Empowering 10,000+ Learners
+
+</h4>
+
+<p style="opacity:.85">
+
+Across India and beyond.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- STATS -->
+
+<section class="section-spacing">
+
+<div class="container">
+
+<h2 class="section-title text-center">
+
+LearnHub by the Numbers
+
+</h2>
+
+<p class="section-subtitle text-center">
+
+Our growing community speaks for itself
+
+</p>
+
+<div class="row g-4">
+
+
+<div class="col-md-3 col-sm-6">
+
+<div class="stat-box hidden">
+
+<div style="font-size:36px;">👨‍🎓</div>
+
+<h2 class="counter" data-target="10000">0+</h2>
+
+<p>Students Enrolled</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+
+<div class="stat-box hidden">
+
+<div style="font-size:36px;">📚</div>
+
+<h2 class="counter" data-target="50">0+</h2>
+
+<p>Courses Available</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+
+<div class="stat-box hidden">
+
+<div style="font-size:36px;">👨‍🏫</div>
+
+<h2 class="counter" data-target="20">0+</h2>
+
+<p>Expert Mentors</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+
+<div class="stat-box hidden">
+
+<div style="font-size:36px;">⭐</div>
+
+<h2>4.8</h2>
+
+<p>Average Rating</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- VALUES -->
+
+<section class="section-spacing bg-light">
+
+<div class="container">
+
+<h2 class="section-title text-center">
+
+Our Core Values
+
+</h2>
+
+<p class="section-subtitle text-center">
+
+What drives everything we do
+
+</p>
+
+<div class="row g-4">
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">💡</div>
+<h5>Innovation</h5>
+<p>We constantly update our curriculum to stay ahead of industry trends.</p>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">🤝</div>
+<h5>Community</h5>
+<p>Learning is better together. We support collaboration and mentorship.</p>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">🏆</div>
+<h5>Excellence</h5>
+<p>We maintain the highest standards in content quality and student support.</p>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">🌍</div>
+<h5>Accessibility</h5>
+<p>Quality education should be available to everyone.</p>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">🔒</div>
+<h5>Trust</h5>
+<p>Transparency and honesty guide everything we do.</p>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="value-card hidden">
+<div class="icon">🚀</div>
+<h5>Growth</h5>
+<p>We help students become confident IT professionals.</p>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- TEAM -->
+
+<section class="section-spacing">
+
+<div class="container">
+
+<h2 class="section-title text-center">
+
+Meet Our Team
+
+</h2>
+
+<p class="section-subtitle text-center">
+
+The people behind LearnHub
+
+</p>
+
+<div class="row g-4">
+
+
+<div class="col-md-3 col-sm-6">
+<div class="team-card hidden">
+<div class="team-avatar">👨‍💼</div>
+<h5>Soham Dongare</h5>
+<p>Founder & CEO</p>
+</div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+<div class="team-card hidden">
+<div class="team-avatar">👩‍💻</div>
+<h5>Krishna Jaiwar</h5>
+<p>Lead Instructor</p>
+</div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+<div class="team-card hidden">
+<div class="team-avatar">👨‍🏫</div>
+<h5>Soham Bhere</h5>
+<p>Head of Curriculum</p>
+</div>
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+<div class="team-card hidden">
+<div class="team-avatar">👩‍🎨</div>
+<h5>Mohan Shere</h5>
+<p>UI/UX Designer</p>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section style="background:linear-gradient(135deg,#1e3c72,#2a5298);padding:60px 20px;text-align:center;color:white;">
+
+<h2 style="font-size:2rem;font-weight:700;margin-bottom:15px;">
+
+Ready to Start Learning?
+
+</h2>
+
+<p style="opacity:.9;margin-bottom:25px;">
+
+Join thousands building successful IT careers.
+
+</p>
+
+<a href="/course" class="btn btn-warning btn-lg px-5 rounded-pill fw-semibold">
+
+Start Learning Now →
+
+</a>
+
+</section>
+
+
+
+<!-- JS -->
+
+<script>
+
+/* COUNTER */
+
+document.querySelectorAll(".counter").forEach(counter=>{
+
+const update=()=>{
+
+const target=+counter.dataset.target;
+const count=+counter.innerText.replace("+","");
+
+const speed=target/100;
+
+if(count<target){
+
+counter.innerText=Math.ceil(count+speed)+"+";
+setTimeout(update,20);
+
+}else{
+
+counter.innerText=target+"+";
+
+}
+
+};
+
+update();
+
+});
+
+
+/* SCROLL ANIMATION */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+
+</script>
+
+
+{% endblock content %}

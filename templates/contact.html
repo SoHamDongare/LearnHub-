@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+.contact-hero {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.contact-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.contact-info-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.contact-info-card .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.contact-info-card h5 {
+    font-weight: 700;
+    color: #1e3c72;
+    margin-bottom: 8px;
+}
+
+.contact-info-card p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+}
+
+.contact-form-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 2px solid #e8eeff;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #2a5298;
+    box-shadow: none;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #1e3c72;
+    font-size: 14px;
+}
+
+.btn-send {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-send:hover {
+    opacity: 0.9;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.map-box {
+    background: #e8eeff;
+    border-radius: 16px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    margin-top: 20px;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    border-left: 4px solid #2a5298;
+}
+
+.faq-item h6 {
+    font-weight: 700;
+    color: #1e3c72;
+    margin-bottom: 6px;
+}
+
+.faq-item p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+}
+</style>
+{% endblock style %}
+
+{% block content %}
+
+{# HERO #}
+<section class="contact-hero">
+    <h1>Contact Us 📬</h1>
+</section>
+
+{# CONTACT INFO CARDS #}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <div class="icon">📧</div>
+                    <h5>Email Us</h5>
+                    <p>support@learnhub.com</p>
+                    <p>info@learnhub.com</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <div class="icon">📞</div>
+                    <h5>Call Us</h5>
+                    <p>+91 98765 43210</p>
+                    <p>Mon - Sat, 9AM to 6PM</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <div class="icon">📍</div>
+                    <h5>Visit Us</h5>
+                    <p>LearnHub HQ, Nashik</p>
+                    <p>Maharashtra, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# CONTACT FORM + FAQ #}
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+
+            {# FORM #}
+            <div class="col-md-7">
+                <div class="contact-form-card">
+                    <h3 style="font-weight:700; color:#1e3c72; margin-bottom:5px;">Send Us a Message</h3>
+                    <p class="text-muted mb-4">Fill out the form and we'll get back to you within 24 hours.</p>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="/contact">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" placeholder="" required>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="rahul@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-control">
+                                <option>General Inquiry</option>
+                                <option>Course Related</option>
+                                <option>Payment Issue</option>
+                                <option>Technical Support</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send">
+                            Send Message 📨
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {# FAQ #}
+            <div class="col-md-5">
+                <h3 style="font-weight:700; color:#1e3c72; margin-bottom:5px;">Frequently Asked</h3>
+                <p class="text-muted mb-4">Quick answers to common questions.</p>
+
+                <div class="faq-item">
+                    <h6>How do I enroll in a course?</h6>
+                    <p>Browse our courses, click Enroll Now and complete the payment process.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h6>Is there a refund policy?</h6>
+                    <p>Yes, we offer a 7-day money back guarantee on all courses.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h6>Will I get a certificate?</h6>
+                    <p>Yes! You'll receive a certificate of completion after finishing the course.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h6>Can I access courses on mobile?</h6>
+                    <p>Absolutely! All our courses are fully accessible on mobile and desktop.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h6>How long do I have access?</h6>
+                    <p>Once enrolled, you get lifetime access to the course content.</p>
+                </div>
+
+                <div class="map-box">
+                    📍
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
